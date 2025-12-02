@@ -78,8 +78,10 @@ int gen_hash_index(const string &str) {
 }
 
 void print_hash_table(const map<int, list<string>> &hash_table, int top_n) {
+    // Prints the first top_n entries in the hash table
     // Arg: hash_table to print
     // Arg: top_n number of entries to print
+    
     int count = 0;
     for (const auto &entry : hash_table) {      // Loop through entries -- note: one entry is an index and its list of strings
         if (count >= top_n) break;
