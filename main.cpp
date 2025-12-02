@@ -10,14 +10,17 @@ using namespace std;
 
 // Fn prototypes
 int sum_ascii(const string &str);
-void tester();
+void ascii_tester();
+
+// Constants
+const int HASH_MOD = 1009; // Large prime number
 
 // -------------------------------------------
 // Main
 // -------------------------------------------
 int main() {
 
-    tester();
+    //ascii_tester();
 
     return 0;
 }
@@ -37,8 +40,10 @@ int sum_ascii(const string &str) {
     return sum;
 }
 
-void tester() {
-    cout << "A" << sum_ascii("A") << endl; // 65
-    cout << "AB" << sum_ascii("AB") << endl; // 65 + 66 = 131
-    cout << "q!" << sum_ascii("q!") << endl; // 33 + 113 = 146
+void ascii_tester() {
+    // Tests the sum_ascii fn
+
+    cout << "A" << sum_ascii("A = ") << endl; // 65
+    cout << "AB" << sum_ascii("AB = ") << endl; // 65 + 66 = 131
+    cout << "q!" << sum_ascii("q! = ") << endl; // 33 + 113 = 146
 }
