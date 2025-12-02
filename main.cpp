@@ -11,6 +11,7 @@ using namespace std;
 // Fn prototypes
 int sum_ascii(const string &str);
 void ascii_tester();
+int gen_hash_index(const string &str);
 
 // Constants
 const int HASH_MOD = 1009; // Large prime number
@@ -47,3 +48,4 @@ void ascii_tester() {
     cout << "AB" << sum_ascii("AB = ") << endl; // 65 + 66 = 131
     cout << "q!" << sum_ascii("q! = ") << endl; // 33 + 113 = 146
 }
+
