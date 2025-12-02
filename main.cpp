@@ -13,6 +13,7 @@ using namespace std;
 int sum_ascii(const string &str);
 void ascii_tester();
 int gen_hash_index(const string &str);
+void print_hash_table(const map<int, list<string>> &hash_table, int top_n);
 
 // Constants
 const int HASH_MOD = 1009; // Large prime number
@@ -23,7 +24,7 @@ const string FILENAME = "/Users/andrewtai/Desktop/COMSC_210/projects/210-lab-37/
 // -------------------------------------------
 int main() {
 
-    // Create hash table
+    // Create hash table with of lists
     map<int, list<string>> hash_table;
 
     // Loop through file -- Edit once you have the file
@@ -34,9 +35,12 @@ int main() {
     }
     string line;
     while (infile >> line) {
-        int hash_index = gen_hash_index(line);
-        hash_table[hash_index].push_back(line);
+        int hash_index = gen_hash_index(line);      // Get hash index
+        hash_table[hash_index].push_back(line);     // Insert into hash table at index; initializes list if not already
     }
+
+    // Print first 100
+    print_hash_table(hash_table, 100);
 
     return 0;
 }
@@ -71,4 +75,19 @@ int gen_hash_index(const string &str) {
     int ascii_sum = sum_ascii(str);
     int hash_index = ascii_sum % HASH_MOD;
     return hash_index;
+}
+
+void print_hash_table(const map<int, list<string>> &hash_table, int top_n) {
+    // Arg: hash_table to print
+    // Arg: top_n number of entries to print
+    int count = 0;
+    for (const auto &entry : hash_table) {      // Loop through entries -- note: one entry is an index and its list of strings
+        if (count >= top_n) break;
+        cout << "Index " << entry.first << ": ";  
+        for (const auto &str : entry.second) {   // Strings stored at this index
+            cout << str << " ";
+        }
+        cout << endl;
+        count++;
+    }
 }
