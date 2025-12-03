@@ -19,6 +19,7 @@ int search_key(const map<int, list<string>> &hash_table, const string &key);
 void user_search_key(const map<int, list<string>> &hash_table);
 void user_add_key(map<int, list<string>> &hash_table);
 void user_remove_key(map<int, list<string>> &hash_table);
+void user_modify_key(map<int, list<string>> &hash_table);
 
 // Constants
 const int HASH_MOD = 1009; // Large prime number
@@ -66,7 +67,18 @@ int main() {
                 user_remove_key(hash_table);
                 break;
             }
-                
+            case 5: {
+                user_modify_key(hash_table);
+                break;
+            }
+            case 6: {
+                cout << "Exiting program." << endl;
+                break;
+            }
+            default: {
+                cout << "Invalid choice. Please try again." << endl;
+                break;
+            }
         }
     }
     
@@ -198,6 +210,24 @@ void user_remove_key(map<int, list<string>> &hash_table) {
         cout << "Key '" << key << "' removed from index " << index << "." << endl;
     } else {
         cout << "Key '" << key << "' not found in hash table." << endl;
+    }
+    cout << endl;
+}
+
+void user_modify_key(map<int, list<string>> &hash_table) {
+    // Implements user modify key
+    // Really just removes then adds new key with checking for existence
+
+    string old_key;
+    cout << "Enter key to modify: ";
+    cin >> old_key;
+    int index = search_key(hash_table, old_key);
+    if (index != -1) {
+        hash_table[index].remove(old_key);
+        user_add_key(hash_table);
+        cout << "Key '" << old_key << "' removed." << endl;
+    } else {
+        cout << "Key '" << old_key << "' not found in hash table." << endl;
     }
     cout << endl;
 }
