@@ -178,28 +178,29 @@ void user_search_key(const map<int, list<string>> &hash_table) {
     cin >> key;
     int index = search_key(hash_table, key);
     if (index != -1) {
-        cout << "Key '" << key << "' found at index " << index << "." << endl;
+        cout << "Key " << key << " found at index " << index << "." << endl;
     } else {
-        cout << "Key '" << key << "' not found in hash table." << endl;
+        cout << "Key " << key << " not found in hash table." << endl;
     }
     cout << endl;
 }
 
 
 void user_add_key(map<int, list<string>> &hash_table) {
-    // Implements user add key
+    // Implements user add key; elicits key to add
 
     string key;
     cout << "Enter key to add: ";
     cin >> key;
     int hash_index = gen_hash_index(key);
     hash_table[hash_index].push_back(key);
-    cout << "Key '" << key << "' added at index " << hash_index << "." << endl;
+    cout << "Key " << key << " added at index " << hash_index << "." << endl;
     cout << endl;
 }
 
 void user_remove_key(map<int, list<string>> &hash_table) {
-    // Implements user remove key
+    // Implements user remove key; elicits key to remove
+    // Note: does not remove duplicates
 
     string key;
     cout << "Enter key to remove: ";
@@ -207,9 +208,9 @@ void user_remove_key(map<int, list<string>> &hash_table) {
     int index = search_key(hash_table, key);
     if (index != -1) {
         hash_table[index].remove(key);
-        cout << "Key '" << key << "' removed from index " << index << "." << endl;
+        cout << "Key " << key << " removed from index " << index << "." << endl;
     } else {
-        cout << "Key '" << key << "' not found in hash table." << endl;
+        cout << "Key " << key << " not found in hash table." << endl;
     }
     cout << endl;
 }
@@ -225,9 +226,9 @@ void user_modify_key(map<int, list<string>> &hash_table) {
     if (index != -1) {
         hash_table[index].remove(old_key);
         user_add_key(hash_table);
-        cout << "Key '" << old_key << "' removed." << endl;
+        cout << "Key " << old_key << " removed." << endl;
     } else {
-        cout << "Key '" << old_key << "' not found in hash table." << endl;
+        cout << "Key " << old_key << " not found in hash table." << endl;
     }
     cout << endl;
 }
