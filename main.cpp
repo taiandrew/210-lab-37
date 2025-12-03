@@ -17,7 +17,7 @@ void print_hash_table(const map<int, list<string>> &hash_table, int top_n);
 int user_menu();
 int search_key(const map<int, list<string>> &hash_table, const string &key);
 void user_search_key(const map<int, list<string>> &hash_table);
-
+void user_add_key(map<int, list<string>> &hash_table);
 
 // Constants
 const int HASH_MOD = 1009; // Large prime number
@@ -55,6 +55,10 @@ int main() {
                 break;
             case 2: {
                 user_search_key(hash_table);
+                break;
+            }
+            case 3: {
+                user_add_key(hash_table);
                 break;
             }
                 
@@ -161,7 +165,9 @@ void user_search_key(const map<int, list<string>> &hash_table) {
     } else {
         cout << "Key '" << key << "' not found in hash table." << endl;
     }
+    cout << endl;
 }
+
 
 void user_add_key(map<int, list<string>> &hash_table) {
     // Implements user add key
@@ -172,4 +178,5 @@ void user_add_key(map<int, list<string>> &hash_table) {
     int hash_index = gen_hash_index(key);
     hash_table[hash_index].push_back(key);
     cout << "Key '" << key << "' added at index " << hash_index << "." << endl;
+    cout << endl;
 }
