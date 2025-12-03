@@ -14,6 +14,8 @@ int sum_ascii(const string &str);
 void ascii_tester();
 int gen_hash_index(const string &str);
 void print_hash_table(const map<int, list<string>> &hash_table, int top_n);
+int user_menu();
+
 
 // Constants
 const int HASH_MOD = 1009; // Large prime number
@@ -27,7 +29,7 @@ int main() {
     // Create hash table with of lists
     map<int, list<string>> hash_table;
 
-    // Loop through file -- Edit once you have the file
+    // Loop through file
     int sum = 0;
     ifstream infile(FILENAME);
     if (!infile) {
@@ -38,14 +40,19 @@ int main() {
     while (infile >> line) {
         int hash_index = gen_hash_index(line);      // Get hash index
         hash_table[hash_index].push_back(line);     // Insert into hash table at index; initializes list if not already
-        sum += sum_ascii(line);                  // Sum ASCII values
     }
+    infile.close();
 
-    // Print first 100 and sum
-    print_hash_table(hash_table, 100);
-    cout << "Total ASCII sum of all strings: " << sum << endl;
-
-    // Sum ASCII
+    // Menu loop
+    int choice = 0;
+    while (choice!=6) {
+        choice = user_menu();
+        switch (choice) {
+            case 1:
+                print_hash_table(hash_table, 100);
+                break;
+        }
+    }
     
 
     return 0;
@@ -98,4 +105,20 @@ void print_hash_table(const map<int, list<string>> &hash_table, int top_n) {
         }
         cout << endl;
     }
+}
+
+int user_menu() {
+    // Implements user menu; returns selection
+
+    int choice;
+    cout << "Menu:\n"
+         << "1. Print first 100 entries\n"
+         << "2. Search for a key\n"
+         << "3. Add a key\n"
+         << "4. Remove a key\n"
+         << "5. Modify a key\n"
+         << "6. Exit\n"
+         << "Enter your choice: ";
+    cin >> choice;
+    return choice;
 }
