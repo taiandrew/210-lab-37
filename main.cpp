@@ -40,12 +40,11 @@ int main() {
         hash_table[hash_index].push_back(line);     // Insert into hash table at index; initializes list if not already
         sum += sum_ascii(line);                  // Sum ASCII values
     }
+    infile.close();
 
     // Print first 100 and sum
     print_hash_table(hash_table, 100);
     cout << "Total ASCII sum of all strings: " << sum << endl;
-
-    // Sum ASCII
     
 
     return 0;
