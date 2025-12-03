@@ -18,6 +18,7 @@ int user_menu();
 int search_key(const map<int, list<string>> &hash_table, const string &key);
 void user_search_key(const map<int, list<string>> &hash_table);
 void user_add_key(map<int, list<string>> &hash_table);
+void user_remove_key(map<int, list<string>> &hash_table);
 
 // Constants
 const int HASH_MOD = 1009; // Large prime number
@@ -59,6 +60,10 @@ int main() {
             }
             case 3: {
                 user_add_key(hash_table);
+                break;
+            }
+            case 4: {
+                user_remove_key(hash_table);
                 break;
             }
                 
@@ -178,5 +183,21 @@ void user_add_key(map<int, list<string>> &hash_table) {
     int hash_index = gen_hash_index(key);
     hash_table[hash_index].push_back(key);
     cout << "Key '" << key << "' added at index " << hash_index << "." << endl;
+    cout << endl;
+}
+
+void user_remove_key(map<int, list<string>> &hash_table) {
+    // Implements user remove key
+
+    string key;
+    cout << "Enter key to remove: ";
+    cin >> key;
+    int index = search_key(hash_table, key);
+    if (index != -1) {
+        hash_table[index].remove(key);
+        cout << "Key '" << key << "' removed from index " << index << "." << endl;
+    } else {
+        cout << "Key '" << key << "' not found in hash table." << endl;
+    }
     cout << endl;
 }
