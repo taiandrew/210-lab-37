@@ -28,6 +28,7 @@ int main() {
     map<int, list<string>> hash_table;
 
     // Loop through file -- Edit once you have the file
+    int sum = 0;
     ifstream infile(FILENAME);
     if (!infile) {
         cerr << "Error opening file." << endl;
@@ -37,10 +38,15 @@ int main() {
     while (infile >> line) {
         int hash_index = gen_hash_index(line);      // Get hash index
         hash_table[hash_index].push_back(line);     // Insert into hash table at index; initializes list if not already
+        sum += sum_ascii(line);                  // Sum ASCII values
     }
 
     // Print first 100
     print_hash_table(hash_table, 100);
+    cout << "Total ASCII sum of all strings: " << sum << endl;
+
+    // Sum ASCII
+    
 
     return 0;
 }
