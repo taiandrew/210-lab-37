@@ -15,6 +15,8 @@ void ascii_tester();
 int gen_hash_index(const string &str);
 void print_hash_table(const map<int, list<string>> &hash_table, int top_n);
 int user_menu();
+int search_key(const map<int, list<string>> &hash_table, const string &key);
+void user_search_key(const map<int, list<string>> &hash_table);
 
 
 // Constants
@@ -51,6 +53,11 @@ int main() {
             case 1:
                 print_hash_table(hash_table, 100);
                 break;
+            case 2: {
+                user_search_key(hash_table);
+                break;
+            }
+                
         }
     }
     
@@ -121,4 +128,48 @@ int user_menu() {
          << "Enter your choice: ";
     cin >> choice;
     return choice;
+}
+
+int search_key(const map<int, list<string>> &hash_table, const string &key) {
+    // Args:
+    // - hash_table to search
+    // - key to search for
+    // Returns: index if key found, -1 if not
+
+    int hash_index = gen_hash_index(key);
+    auto it = hash_table.find(hash_index);
+    if (it != hash_table.end()) {       // If index exists, check contained list for key
+        const list<string> &keys = it->second;
+        for (const auto &str : keys) {
+            if (str == key) {
+                return hash_index;
+            }
+        }
+    }
+    return -1; // Not found
+}
+
+void user_search_key(const map<int, list<string>> &hash_table) {
+    // Implements user search key
+
+    string key;
+    cout << "Enter key to search for: ";
+    cin >> key;
+    int index = search_key(hash_table, key);
+    if (index != -1) {
+        cout << "Key '" << key << "' found at index " << index << "." << endl;
+    } else {
+        cout << "Key '" << key << "' not found in hash table." << endl;
+    }
+}
+
+void user_add_key(map<int, list<string>> &hash_table) {
+    // Implements user add key
+
+    string key;
+    cout << "Enter key to add: ";
+    cin >> key;
+    int hash_index = gen_hash_index(key);
+    hash_table[hash_index].push_back(key);
+    cout << "Key '" << key << "' added at index " << hash_index << "." << endl;
 }
