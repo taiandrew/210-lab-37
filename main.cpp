@@ -41,7 +41,7 @@ int main() {
         sum += sum_ascii(line);                  // Sum ASCII values
     }
 
-    // Print first 100
+    // Print first 100 and sum
     print_hash_table(hash_table, 100);
     cout << "Total ASCII sum of all strings: " << sum << endl;
 
@@ -90,12 +90,12 @@ void print_hash_table(const map<int, list<string>> &hash_table, int top_n) {
     
     int count = 0;
     for (const auto &entry : hash_table) {      // Loop through entries -- note: one entry is an index and its list of strings
-        if (count >= top_n) break;
-        cout << "Index " << entry.first << ": ";  
+        cout << "Index " << entry.first << ": " << endl;  // index
         for (const auto &str : entry.second) {   // Strings stored at this index
-            cout << str << " ";
+            cout << "\t" << str << endl;
+            count++;
+            if (count >= top_n) return;
         }
         cout << endl;
-        count++;
     }
 }
