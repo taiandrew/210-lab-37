@@ -84,7 +84,7 @@ int gen_hash_index(const string &str) {
 }
 
 void print_hash_table(const map<int, list<string>> &hash_table, int top_n) {
-    // Prints the first top_n entries in the hash table
+    // Prints the first top_n entries in the hash table (strings, not indexes)
     // Arg: hash_table to print
     // Arg: top_n number of entries to print
     
